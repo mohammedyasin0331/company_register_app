@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Theme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',   // blue-600
+                        secondary: '#f8fafc', // light background
+                        heading: '#1e40af'    // darker blue for headings
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-secondary min-h-screen flex items-center justify-center py-10">
+
+    <!-- Form Container -->
+    <div class="w-full max-w-lg bg-white rounded-xl shadow-md border border-slate-200 p-8">
+
+        <!-- Heading -->
+        <h2 class="text-2xl font-semibold text-heading mb-6 text-center">
+            Add Employee
+        </h2>
+
+        <!-- Form -->
+        <form method="post" class="space-y-5">
+            {% csrf_token %}
+
+            <!-- Django form fields -->
+            {{ form.as_p }}
+
+            <!-- Submit Button -->
+            <button type="submit"
+                    class="w-full bg-primary hover:bg-blue-700
+                           text-white py-3 rounded-lg font-medium
+                           transition shadow-md">
+                Save Employee
+            </button>
+        </form>
+
+        <!-- Back Link -->
+        <div class="mt-6 text-center">
+            <a href="{% url 'employee_list' %}"
+               class="text-primary font-medium hover:underline">
+                ⬅ Back to Employee List
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Optional: Input styling for better appearance -->
+    <style>
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 500;
+            color: #1e40af;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+    </style>
+
+</body>
+</html>
